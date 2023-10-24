@@ -1,0 +1,118 @@
+import time
+
+def introduction():
+    print("Welcome to the Text Adventure Game!")
+    time.sleep(1)
+    print("You find yourself standing in front of a mysterious cave.")
+    time.sleep(1)
+    print("Do you want to enter the cave? (yes/no)")
+
+def choose_path():
+    choice = input().lower()
+    if choice == 'yes':
+        print("You enter the dark cave...")
+        time.sleep(1)
+        print("You see two paths. One leads left and the other right.")
+        time.sleep(1)
+        print("Which path do you choose? (left/right)")
+        return input().lower()
+    elif choice == 'no':
+        print("You decide not to enter the cave and explore elsewhere.")
+        return 'exit'
+    else:
+        print("Invalid input. Please enter 'yes' or 'no'.")
+        return choose_path()
+
+def left_path():
+    print("You chose the left path...")
+    time.sleep(1)
+    print("You encounter a friendly creature.")
+    time.sleep(1)
+    print("It offers you a magical potion. Do you accept? (yes/no)")
+
+    choice = input().lower()
+    if choice == 'yes':
+        print("You drink the potion and feel a surge of energy.")
+        return 'win'
+    elif choice == 'no':
+        print("You politely decline the potion and continue your journey.")
+        time.sleep(1)
+        print("Further down the path, you find a hidden treasure chest.")
+        time.sleep(1)
+        print("Do you open the chest? (yes/no)")
+
+        choice = input().lower()
+        if choice == 'yes':
+            print("Congratulations! You discover valuable treasures. You win!")
+            return 'win'
+        elif choice == 'no':
+            print("You decide not to risk it and continue your journey. You win!")
+            return 'win'
+        else:
+            print("Invalid input. You cautiously move on. You win!")
+            return 'win'
+    else:
+        print("Invalid input. Please enter 'yes' or 'no'.")
+        return left_path()
+
+def right_path():
+    print("You chose the right path...")
+    time.sleep(1)
+    print("You encounter a menacing dragon blocking your way.")
+    time.sleep(1)
+    print("Do you try to sneak past the dragon or confront it? (sneak/confront)")
+
+    choice = input().lower()
+    if choice == 'sneak':
+        print("You successfully sneak past the dragon and continue your journey.")
+        time.sleep(1)
+        print("You find a magical portal. Do you enter it? (yes/no)")
+
+        choice = input().lower()
+        if choice == 'yes':
+            print("Congratulations! You discover a new realm. You win!")
+            return 'win'
+        elif choice == 'no':
+            print("You decide to stay on your current path. You win!")
+            return 'win'
+        else:
+            print("Invalid input. You cautiously move on. You win!")
+            return 'win'
+    elif choice == 'confront':
+        print("You bravely confront the dragon, but unfortunately, it attacks.")
+        time.sleep(1)
+        print("In the heat of battle, you find a hidden passage. Do you escape through it? (yes/no)")
+
+        choice = input().lower()
+        if choice == 'yes':
+            print("Congratulations! You escape and continue your journey. You win!")
+            return 'win'
+        elif choice == 'no':
+            print("You choose to fight the dragon, but unfortunately, you lose. Game over.")
+            return 'lose'
+        else:
+            print("Invalid input. You make a quick decision. You win!")
+            return 'win'
+    else:
+        print("Invalid input. Please enter 'sneak' or 'confront'.")
+        return right_path()
+
+def main():
+    introduction()
+    path = choose_path()
+
+    if path == 'left':
+        result = left_path()
+    elif path == 'right':
+        result = right_path()
+    elif path == 'exit':
+        print("Thanks for playing. Goodbye!")
+        return
+
+    if result == 'win':
+        print("Congratulations! You win!")
+    elif result == 'lose':
+        print("Oops! You lose. Better luck next time.")
+
+if _name_ == "_main_":
+    main()
